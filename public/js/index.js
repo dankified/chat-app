@@ -5,7 +5,7 @@ socket.on("connect", function() {
 });
 
 socket.on('newMessage', function(data) {
-  console.log("Some fucking imbecile sent this message", data);
+  console.log(data);
 })
 
 socket.on("disconnect", function() {
