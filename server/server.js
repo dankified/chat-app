@@ -11,23 +11,21 @@ var io = socketIO(server);
 
 app.use(express.static(publicPath));
 
-io.on('connection', (socket) => {
-	console.log("New user connected!");
+io.on("connection", socket => {
+  console.log("New user connected!");
 
-  socket.on('createMessage', (data) => {
-    console.log("User submitted some shit", data);
-    socket.emit('newMessage', {
-      from: data.from,
-      text: data.text,
-      createdAt: Date.now()
-    })
-    
-  })
+  socket.on("createMessage", message => {
+    io.emit("newMessage", {
+      from: message.from,
+      text: message.text,
+      createdAt: new Date().getTime()
+    });
+    console.log("User submitted some shit", message);
+  });
 
-	socket.on('disconnect', () => {
-		console.log("User disconnected!")
-	});
-
+  socket.on("disconnect", () => {
+    console.log("User disconnected!");
+  });
 });
 
 server.listen(port, () => {
