@@ -25,3 +25,33 @@ document.getElementById("message-form").addEventListener("submit", function(e) {
   })
   document.querySelector("input[name='message']").value = "";
 });
+
+socket.on('newLocationMessage', function(message) {
+  var li = document.createElement('li');
+  var a = document.createElement('a');
+
+  var node = document.createTextNode(`${message.from} current location`);
+
+  a.setAttribute("href", message.url);
+  
+  a.append(node);
+  li.append(a);
+
+  document.getElementById('messages').appendChild(li);
+});
+
+var locationButton = document.getElementById("send-location");
+locationButton.addEventListener('click', function(e) {
+  if(!navigator.geolocation) {
+    return alert("Geolocation not supported by your browser");
+  }
+
+  navigator.geolocation.getCurrentPosition(function(position) {
+    socket.emit('createLocationMessage', {
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude
+    })
+  }, function() {
+    alert("Unable to fetch location.");
+  });
+});
