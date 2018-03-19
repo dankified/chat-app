@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "concurrently \"npm run nodemon\" \"npm run webpack\"",
     "nodemon": "nodemon server/server.js",
     "test": "mocha server/**/*.test.js",
     "test-watch": "nodemon --exec 'npm test'",
-    "webpack": "webpack"
+		"webpack": "webpack"
   },
   "engines": {
     "node": "9.4.0"
@@ -29,6 +29,7 @@
     "nodemon": "^1.17.2",
     "style-loader": "^0.20.3",
     "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.12"
+    "webpack-cli": "^2.0.12",
+    "webpack-dev-server": "^3.1.1"
   }
 }

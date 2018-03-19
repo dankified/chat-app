@@ -22,5 +22,11 @@ module.exports = {
         loader: ["style-loader", "css-loader"]
       }
     ]
-  }
+	}, 
+	devServer: {
+		contentBase: path.join(__dirname, "./public"),
+		port: 5000
+	},
+	watch: true
+	
 } 
