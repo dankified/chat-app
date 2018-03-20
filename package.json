@@ -9,7 +9,7 @@
     "nodemon": "nodemon server/server.js",
     "test": "mocha server/**/*.test.js",
     "test-watch": "nodemon --exec 'npm test'",
-    "webpack": "webpack"
+    "webpack": "webpack --watch"
   },
   "engines": {
     "node": "9.4.0"
